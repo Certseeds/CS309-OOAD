@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style type = "text/css">
+    table {
+        border: 2px solid black;
+        border-collapse: separate;
+        border-spacing: 5px;
+        margin: 0 auto;
+    }
+    th {
+        border: 2px solid black;
+        padding: 18px;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    td {
+        border: 1px solid black;
+        padding: 18px;
+        background-color: #E3AFF9;
+        text-align: center;
+        font-size: 18px;
+    }
+    #head_prompt{
+        font-size: 12px;
+        font-style: italic;
+    }
+    #button1{
+        text-align: center;
+    }
+    #div_form1 {
+        line-height: 40px;
+        width: 450px;
+        height: 500px;
+        text-align: center;
+        background-color: #CCCCFF;
+        font-size: 20px;
+        margin: 40px auto 0;
+        border: 2px solid black;
+    }
+    </style>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="Assignment2_JS.js"></script>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="bootstrap.min.js"></script>
+<title>SUSTech Parking Record</title>
+</head>
+<body bgcolor="#FFFFED" onload="initial()">
+<table id="table">
+    <caption id="head_prompt"><h1>SUSTech Parking Record</h1></caption>
+    <tr bgcolor="#FEFEFE">
+        <th>License Plate Number</th>
+        <th>Entrance Number</th>
+        <th>Date</th>
+        <th>Arrival Time</th>
+        <th>Departure Time</th>
+        <th>Staff Name</th>
+        <th>Staff Number</th>
+        <th>Status</th>
+        <th></th>
+    </tr>
+    <tbody id="tbody" style="display: none">
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+            <input type="button" value="Delete" onclick="removeRow(this)">
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div style="text-align: center;">
+    <button id="button1" class="modal1" data-toggle="modal" data-target="#AddRow">
+        Add A Record
+    </button>
+</div>
+<div class="modal fade" id="AddRow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div id="div_form1">
+        <form name="form1">
+            License Plate Number:粤B:
+            <input type="text" name="plate-number"/><br>
+            Entrance Number:
+            <input type="text" name="Entrance_Number"/><br>
+            Date:
+            <select id="year" onchange="setMonth()"></select>year
+            <select id="month" onchange="setDay()"></select>month
+            <select id="day"></select>day<br>
+            Arrival Time:
+            <select id="ahour"></select>:
+            <select id="aminute"></select><br>
+            Departure Time:
+            <select id="dhour"></select>:
+            <select id="dminute"></select><br>
+            Staff Name:
+            <input type="text" name="staff_name"/><br>
+            Staff Numbers:
+            <input type="text" name="staff_numbers"/><br>
+            <form>
+                Status:<br>
+                <input type="radio" name="status" id="In" value="In">In
+                <input type="radio" name="status" id="Out" value="Out">Out<br>
+            </form>
+            <input type="button" value="Add Flight" onclick="onClickAddFlight()"><br>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
