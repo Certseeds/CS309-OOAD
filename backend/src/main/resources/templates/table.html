@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <link rel="stylesheet" th:href="@{/css/element.css}">
+    <link rel="stylesheet" th:href="@{/css/forAll.css}">
+    <title>Register a User</title>
+</head>
+<body>
+<div id="app">
+    <template>
+        <el-table
+                :data="tableData"
+                border
+                height="1145" style="width: 100%">
+            <el-table-column
+                    label="AutoId"
+                    prop="autoId"
+                    v-if='show' width="0">
+            </el-table-column>
+            <el-table-column
+                    label="Title"
+                    prop="title"
+                    width="180">
+                <template slot-scope="scope">
+                    <el-button @click="UpdateMovieOpen(scope.row,scope.$index);"
+                               plain type="text">{{scope.row.title}}
+                    </el-button>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    label="Date"
+                    prop="date"
+                    width="180">
+            </el-table-column>
+            <el-table-column
+                    label="Start time"
+                    prop="startTime">
+            </el-table-column>
+            <el-table-column
+                    label="Duration"
+                    prop="duration">
+            </el-table-column>
+            <el-table-column
+                    label="MovieHall"
+                    prop="movieHall">
+            </el-table-column>
+            <el-table-column
+                    label="price"
+                    prop="price">
+            </el-table-column>
+            <el-table-column
+                    label="Type"
+                    prop="type">
+            </el-table-column>
+            <el-table-column
+                    label=""
+                    prop="deletebutton">
+                <template slot-scope="scope">
+                    <el-button @click="deleteMovie(scope.row.title,scope.$index);"
+                               size="small" type="primary">删除
+                    </el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+    </template>
+</div>
+<div id="AddMovieDialog" style="text-align: center;">
+    <el-button @click="dialogFormVisible = true" round type="text">Add Movie</el-button>
+    <el-dialog :visible.sync="dialogFormVisible" title="Add Movie">
+        <el-form :model="form">
+            <el-form-item :label-width="formLabelWidth" label="Title">
+                <el-input autocomplete="off" v-model="form.title"></el-input>
+            </el-form-item>
+            <el-form-item :label-width="formLabelWidth" label="Date">
+                <el-input autocomplete="off" v-model="form.date"></el-input>
+            </el-form-item>
+            <el-form-item :label-width="formLabelWidth" label="StartTime">
+                <el-input autocomplete="off" v-model="form.startTime"></el-input>
+            </el-form-item>
+            <el-form-item :label-width="formLabelWidth" label="Duration">
+                <el-input autocomplete="off" v-model="form.duration"></el-input>
+            </el-form-item>
+            <el-form-item :label-width="formLabelWidth" label="MovieHall">
+                <el-input autocomplete="off" v-model="form.movieHall"></el-input>
+            </el-form-item>
+            <el-form-item :label-width="formLabelWidth" label="Price">
+                <el-input autocomplete="off" v-model="form.price"></el-input>
+            </el-form-item>
+            <el-form-item :label-width="formLabelWidth" label="Type">
+                <el-input autocomplete="off" v-model="form.type"></el-input>
+            </el-form-item>
+        </el-form>
+        <div class="dialog-footer" slot="footer">
+            <el-button @click="dialogFormVisible = false;">取 消</el-button>
+            <el-button @click.native="AddClick();dialogFormVisible = false;" type="primary">确 定</el-button>
+        </div>
+    </el-dialog>
+</div>
+<p></p>
+<div id="UpdateMovieDialog" style="text-align: center;">
+    <el-dialog :visible.sync="UpdatedialogFormVisible" title="Update Movie">
+        <el-form :model="form">
+            <el-form-item :label-width="formLabelWidth" label="Title">
+                <el-input autocomplete="off" v-model="form.title"></el-input>
+            </el-form-item>
+            <el-form-item :label-width="formLabelWidth" label="Date">
+                <el-input autocomplete="off" v-model="form.date"></el-input>
+            </el-form-item>
+            <el-form-item :label-width="formLabelWidth" label="StartTime">
+                <el-input autocomplete="off" v-model="form.startTime"></el-input>
+            </el-form-item>
+            <el-form-item :label-width="formLabelWidth" label="Duration">
+                <el-input autocomplete="off" v-model="form.duration"></el-input>
+            </el-form-item>
+            <el-form-item :label-width="formLabelWidth" label="MovieHall">
+                <el-input autocomplete="off" v-model="form.movieHall"></el-input>
+            </el-form-item>
+            <el-form-item :label-width="formLabelWidth" label="Price">
+                <el-input autocomplete="off" v-model="form.price"></el-input>
+            </el-form-item>
+            <el-form-item :label-width="formLabelWidth" label="Type">
+                <el-input autocomplete="off" v-model="form.type"></el-input>
+            </el-form-item>
+        </el-form>
+        <div class="dialog-footer" slot="footer">
+            <el-button @click="UpdatedialogFormVisible = false;">取 消</el-button>
+            <el-button @click.native="UpdateMovie();UpdatedialogFormVisible = false;" type="primary">确
+                定
+            </el-button>
+        </div>
+    </el-dialog>
+</div>
+<div class="arrange-horizontally">
+    <div>Date</div>
+    <el-input id="searchDate" placeholder="" v-model="input"></el-input>
+</div>
+<div class="arrange-horizontally">
+    <div>MovieHall</div>
+    <el-input id="searchMovieHall" placeholder="" v-model="input"></el-input>
+</div>
+<el-button @click.native="searchDataAndMovieHall();" id="SearchButton" round type="text">
+    Search
+</el-button>
+
+</body>
+<script th:src="@{/includejs/vue.js}"></script>
+<!-- import JavaScript -->
+<script th:src="@{/includejs/element.js}"></script>
+<script th:src="@{/includejs/stringformat.min.js}"></script>
+<script th:src="@{/js/table.js}"></script>
+</html>

@@ -1,0 +1,14 @@
+.useless {
+    visibility: hidden;
+}
+
+
+div, section {
+    text-align: center;
+    margin: 1% auto;
+}
+
+#app {
+    width: 10%;
+    height: 8%;
+}

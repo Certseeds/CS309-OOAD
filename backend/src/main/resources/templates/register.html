@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <link rel="stylesheet" th:href="@{/css/element.css}">
+    <title>Register a User</title>
+</head>
+<body>
+<div> Please Register a User</div>
+<div class="arrange-vertically">
+    <div class="arrange-horizontally">
+        <div>username:</div>
+        <el-input id="inputName" placeholder="请输入内容" v-model="input"></el-input>
+        <div id="inputMention">{{message}}</div>
+    </div>
+    <div class="arrange-horizontally">
+        <div>password:</div>
+        <el-input id="passWord" placeholder="请输入密码" show-password v-model="input"></el-input>
+        <div id="passWordMention">{{message}}</div>
+    </div>
+    <div class="arrange-horizontally">
+        <div>confirm password:</div>
+        <el-input id="confirmPassWord" placeholder="请再次输入密码" show-password v-model="input"></el-input>
+        <div id="confirmPassWordMention">{{message}}</div>
+    </div>
+</div>
+<div id="RegisterButton">
+    <el-button @click.native="RegisterClick()" round type="primary">Register</el-button>
+</div>
+<div id="LoginLink">
+    <el-link @click.native="loginLink()" type="text">Return back to login page</el-link>
+</div>
+<el-button @click="dialogVisible = true" type="text"></el-button>
+</body>
+<script th:src="@{/includejs/vue.js}"></script>
+<!-- import JavaScript -->
+<script th:src="@{/includejs/element.js}"></script>
+<script th:src="@{/includejs/stringformat.min.js}"></script>
+<script th:src="@{/js/inputpass.js}"></script>
+<script th:src="@{/js/register_html.js}"></script>
+<link rel="stylesheet" th:href="@{/css/wona.css}" type="text/css"/>
+</html>
