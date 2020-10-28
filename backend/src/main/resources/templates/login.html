@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <link rel="stylesheet" th:href="@{/css/element.css}">
+    <link rel="stylesheet" th:href="@{/css/wona.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/forAll.css}" type="text/css"/>
+    <title>Login</title>
+</head>
+<body>
+<div> Please Login the System</div>
+<p class="useless" id="useless" th:text="${name}"></p>
+<div class="arrange-vertically">
+    <div class="arrange-horizontally">
+        <div>username:</div>
+        <el-input id="inputName" placeholder="请输入用户名" v-model="input"></el-input>
+        <div id="inputMention">{{message}}</div>
+    </div>
+    <div class="arrange-horizontally">
+        <div>password:</div>
+        <el-input id="passWord" placeholder="请输入密码" show-password v-model="input"></el-input>
+        <div id="passWordMention">{{message}}</div>
+    </div>
+</div>
+<div id="WrongMention">{{message}}</div>
+<div id="LoginButton">
+    <el-button @click.native="LoginClick()" round type="primary">Login</el-button>
+</div>
+<div id="RegisterLink">
+    <el-link @click.native="registerClick()" type="text"> Register a User</el-link>
+</div>
+<el-button @click="dialogVisible = true" type="text"></el-button>
+<form action="/table" id="toTable" method="post">
+    <input name="state" type="hidden" value="200">
+    <input name="tokenId" type="hidden" value="">
+</form>
+</body>
+<!-- import Vue before Element -->
+<script th:src="@{/includejs/vue.js}"></script>
+<!-- import JavaScript -->
+<script th:src="@{/includejs/element.js}"></script>
+<script th:src="@{/includejs/stringformat.min.js}"></script>
+<script th:src="@{/js/inputpass.js}"></script>
+<script th:src="@{/js/login_html.js}"></script>
+</html>

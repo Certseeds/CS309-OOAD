@@ -1,0 +1,14 @@
+.arrange-horizontally > * {
+    display: inline-block;
+    text-align: center;
+}
+
+.arrange-vertically > * {
+    display: block;
+}
+
+
+.el-input {
+    width: 30%;
+    height: 10%;
+}
