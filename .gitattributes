@@ -1,3 +1,11 @@
+### 
+##@Github: https://github.com/Certseeds/CS309-OOAD
+##@Organization: SUSTech
+##@Author: nanoseeds
+##@Date: 2020-10-28 19:11:46
+##@LastEditors: nanoseeds
+##@LastEditTime: 2020-10-29 14:33:09
+### 
 * text=auto
 
 # itself
@@ -22,7 +30,6 @@
 *.df            text
 *.htm           text diff=html
 *.html          text diff=html
-*.js            text
 *.jsp           text
 *.jspf          text
 *.jspx          text

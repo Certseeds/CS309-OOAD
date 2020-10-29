@@ -1,0 +1,10 @@
+### 
+##@Github: https://github.com/Certseeds/CS309-OOAD
+##@Organization: SUSTech
+##@Author: nanoseeds
+##@Date: 2020-10-29 14:32:22
+##@LastEditors: nanoseeds
+##@LastEditTime: 2020-10-29 14:32:29
+### 
+includejs/*  linguist-vendored=true
+includecss/*  linguist-vendored=true
