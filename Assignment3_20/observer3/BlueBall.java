@@ -1,8 +1,19 @@
 import java.awt.*;
 
 public class BlueBall extends Ball {
+    boolean collision = false;
+
     public BlueBall(Color color, int xSpeed, int ySpeed, int ballSize) {
         super(color, xSpeed, ySpeed, ballSize);
+    }
+
+    @Override
+    public boolean isCollision() {
+        return collision;
+    }
+
+    public void setCollision(boolean collision) {
+        this.collision = collision;
     }
 
     @Override
@@ -14,6 +25,7 @@ public class BlueBall extends Ball {
 
     @Override
     public void update(int x, int y) {
-        System.out.println("Blue");
+        collision = update_public(x, y, 70, 40, new Color(51, 153, 255));
     }
+
 }

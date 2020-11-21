@@ -2,7 +2,7 @@ import javax.swing.*;
 
 import java.awt.*;
 
-public abstract class Ball extends JComponent implements Observer{
+public abstract class Ball extends JComponent implements Observer {
     public static final int TOTAL_NUM = 10;
     private static int count = 0;
     private Color color;

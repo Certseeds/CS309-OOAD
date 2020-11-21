@@ -12,7 +12,7 @@ public class MainPanel extends JPanel implements KeyListener, Subject {
     private boolean start = false;
     private int score;
     private int redCount;
-    private Ball greenBall;
+    private GreenBall greenBall;
 
     public MainPanel() {
         setLayout(null);
@@ -38,7 +38,7 @@ public class MainPanel extends JPanel implements KeyListener, Subject {
         this.greenBall.setVisible(true);
     }
 
-    public void setGreenBall(Ball greenBall) {
+    public void setGreenBall(GreenBall greenBall) {
         this.greenBall = greenBall;
         this.greenBall.setVisible(false);
         this.registerObserver(greenBall);
@@ -52,7 +52,7 @@ public class MainPanel extends JPanel implements KeyListener, Subject {
             paintingBallList.forEach(b -> {
                 if (b.isIntersect(greenBall) && b.isVisible()) {
                     b.setVisible(false);
-                    if (b.getColor() == Color.RED) {
+                    if (b instanceof RedBall) {
                         this.addScore(10);
                         redCount--;
                         if (redCount == 0) {
@@ -60,7 +60,7 @@ public class MainPanel extends JPanel implements KeyListener, Subject {
                             greenBall.setVisible(false);
                         }
                     }
-                    if (b.getColor() == Color.BLUE) {
+                    if (b instanceof BlueBall) {
                         this.addScore(-10);
                     }
                 }
@@ -91,12 +91,13 @@ public class MainPanel extends JPanel implements KeyListener, Subject {
 
 
     public void addBallToPanel(Ball ball) {
-        if (ball.getColor() == Color.RED) {
+        if (ball instanceof RedBall) {
             redCount++;
         }
         paintingBallList.add(ball);
         this.registerObserver(ball);
         this.add(ball);
+        greenBall.registerObserver(ball);
     }
 
     public boolean isStart() {
