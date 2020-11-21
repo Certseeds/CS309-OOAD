@@ -24,18 +24,20 @@ public class MainFrame extends JFrame {
         JButton blue = buttonPanel.getAddBlue();
         JButton start = buttonPanel.getStart();
 
-        mainPanel.addBallToPanel(new Ball(Color.RED, 4, 5, 60));
-        mainPanel.setGreenBall(new Ball(Color.GREEN, 7, 7, 40));
+        mainPanel.addBallToPanel(new RedBall(Color.RED, 4, 5, 60));
+        mainPanel.setGreenBall(new GreenBall(Color.GREEN, 7, 7, 40));
 
 
         red.addActionListener(l -> {
-            if (Ball.getCount() < Ball.TOTAL_NUM)
-                mainPanel.addBallToPanel(new Ball(Color.RED, 4, 5, 60));
+            if (Ball.getCount() < Ball.TOTAL_NUM) {
+                mainPanel.addBallToPanel(new RedBall(Color.RED, 4, 5, 60));
+            }
         });
 
         blue.addActionListener(l -> {
-            if (Ball.getCount() < Ball.TOTAL_NUM)
-                mainPanel.addBallToPanel(new Ball(Color.BLUE, 6, 4, 60));
+            if (Ball.getCount() < Ball.TOTAL_NUM) {
+                mainPanel.addBallToPanel(new RedBall(Color.BLUE, 6, 4, 60));
+            }
         });
 
         start.addActionListener(l -> {

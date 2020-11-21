@@ -2,7 +2,7 @@ import javax.swing.*;
 
 import java.awt.*;
 
-public class Ball extends JComponent {
+public abstract class Ball extends JComponent implements Observer{
     public static final int TOTAL_NUM = 10;
     private static int count = 0;
     private Color color;
@@ -123,7 +123,6 @@ public class Ball extends JComponent {
         super.paintComponent(g);
         draw(g);
     }
-
 
 }
 
