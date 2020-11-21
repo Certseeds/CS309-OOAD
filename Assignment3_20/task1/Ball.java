@@ -1,14 +1,15 @@
 import javax.swing.*;
+
 import java.awt.*;
 
 public class Ball extends JComponent {
+    public static final int TOTAL_NUM = 10;
+    private static int count = 0;
     private Color color;
     private int x, y;
     private int xSpeed, ySpeed;
     private int ballSize;
     private boolean visible;
-    public static final int TOTAL_NUM = 10;
-    private static int count = 0;
 
     public Ball(Color color, int xSpeed, int ySpeed, int ballSize) {
         this.color = color;
@@ -25,16 +26,16 @@ public class Ball extends JComponent {
         this.setSize(ballSize, ballSize);
     }
 
-    public static int getCount(){
+    public static int getCount() {
         return count;
-    }
-
-    public void setColor(Color newColor) {
-        this.color = newColor;
     }
 
     public Color getColor() {
         return this.color;
+    }
+
+    public void setColor(Color newColor) {
+        this.color = newColor;
     }
 
     public int getX() {

@@ -6,7 +6,8 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainPanel extends JPanel implements KeyListener {
+public class MainPanel extends JPanel implements KeyListener, Subject {
+    private List<Observer> observers = new ArrayList<>();
     private List<Ball> paintingBallList = new ArrayList<>();
     private boolean start = false;
     private int score;
@@ -40,6 +41,7 @@ public class MainPanel extends JPanel implements KeyListener {
     public void setGreenBall(Ball greenBall) {
         this.greenBall = greenBall;
         this.greenBall.setVisible(false);
+        this.registerObserver(greenBall);
         add(greenBall);
     }
 
@@ -89,9 +91,11 @@ public class MainPanel extends JPanel implements KeyListener {
 
 
     public void addBallToPanel(Ball ball) {
-        if (ball.getColor() == Color.RED)
+        if (ball.getColor() == Color.RED) {
             redCount++;
+        }
         paintingBallList.add(ball);
+        this.registerObserver(ball);
         this.add(ball);
     }
 
@@ -106,47 +110,37 @@ public class MainPanel extends JPanel implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent keyEvent) {
+        System.out.println("Key is Pressed");
         char keyChar = keyEvent.getKeyChar();
-
-
-        if (keyChar == 'a' || keyChar == 'd') {
-            paintingBallList.stream().filter(b -> b.getColor() == Color.RED).forEach(
-                    redBall -> {
-                        int temp = redBall.getXSpeed();
-                        redBall.setXSpeed(redBall.getYSpeed());
-                        redBall.setYSpeed(temp);
-                    }
-            );
+        if (keyChar == ' ') {
+            start = !start;
         }
-
-        if (start) {
-            switch (keyChar) {
-                case 'a':
-                    greenBall.setXSpeed(Math.abs(greenBall.getXSpeed()) * -1);
-                    break;
-                case 'd':
-                    greenBall.setXSpeed(Math.abs(greenBall.getXSpeed()));
-                    break;
-                case 'w':
-                    greenBall.setYSpeed(Math.abs(greenBall.getYSpeed()) * -1);
-                    break;
-                case 's':
-                    greenBall.setYSpeed(Math.abs(greenBall.getYSpeed()));
-                    break;
-            }
-        }
-
-        paintingBallList.stream().filter(b -> b.getColor() == Color.blue).forEach(
-                blueBall -> {
-                    blueBall.setXSpeed(-1 * blueBall.getXSpeed());
-                    blueBall.setYSpeed(-1 * blueBall.getYSpeed());
-                }
-        );
-
+        notifyObservers(keyChar);
     }
 
     @Override
     public void keyReleased(KeyEvent keyEvent) {
 
+    }
+
+    @Override
+    public void registerObserver(Observer o) {
+        observers.add(o);
+    }
+
+    @Override
+    public void removeObserver(Observer o) {
+        observers.remove(o);
+    }
+
+    @Override
+    public void notifyObservers(char keyChar) {
+        for (Observer observer : observers) {
+            observer.update(keyChar);
+        }
+    }
+
+    @Override
+    public void notifyObservers() {
     }
 }
