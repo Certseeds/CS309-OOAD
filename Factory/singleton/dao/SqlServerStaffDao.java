@@ -1,14 +1,14 @@
 package singleton.dao;
 
 import singleton.bean.Staff;
-import singleton.dao.StaffDao;
 
-public class SqlServerStaffDao implements StaffDao {
+public class SqlServerStaffDao extends Singleton implements StaffDao {
     private volatile static SqlServerStaffDao singleton;
 
     private SqlServerStaffDao() {
     }
-    public static SqlServerStaffDao getSingleton(){
+
+    public static Singleton getSingleton() {
         if (singleton == null) {
             synchronized (SqlServerComputerDao.class) {
                 if (singleton == null) {
@@ -22,6 +22,7 @@ public class SqlServerStaffDao implements StaffDao {
         }
         return singleton;
     }
+
     @Override
     public int insertStaff(Staff staff) {
         if (staff == null) {

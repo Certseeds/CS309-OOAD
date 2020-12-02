@@ -1,17 +1,14 @@
 package singleton.dao;
 
 import singleton.bean.Staff;
-import singleton.dao.StaffDao;
 
-import java.lang.reflect.InvocationTargetException;
-
-public class MysqlStaffDao implements StaffDao {
+public class MysqlStaffDao extends Singleton implements StaffDao {
     private volatile static MysqlStaffDao singleton;
 
     private MysqlStaffDao() {
     }
 
-    public static MysqlStaffDao getSingleton(){
+    public static Singleton getSingleton() {
         if (singleton == null) {
             synchronized (MysqlComputerDao.class) {
                 if (singleton == null) {

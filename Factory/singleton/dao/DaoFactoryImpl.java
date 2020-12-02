@@ -1,15 +1,41 @@
 package singleton.dao;
 
-public class DaoFactoryImpl {
+import java.lang.reflect.Method;
+
+public class DaoFactoryImpl extends Singleton {
+    private volatile static DaoFactoryImpl singleton;
+    static String name;
+
     public DaoFactoryImpl() {
     }
 
-    public ComputerDao createComputerDao() {
-        return null;
+    public static Singleton getSingleton(String nameofClass) {
+        if (singleton == null) {
+            synchronized (DaoFactoryImpl.class) {
+                if (singleton == null) {
+                    try {
+                        name = nameofClass;
+                        singleton = DaoFactoryImpl.class.getDeclaredConstructor().newInstance();
+                    } catch (Exception e) {
+                    }
+                }
+            }
+        }
+        return singleton;
     }
 
-    public StaffDao createStaffDao() {
-        return null;
+    public ComputerDao createComputerDao() throws Exception {
+        Class clz = Class.forName(String.format("%s%s%s", "singleton.dao.", name, "ComputerDao"));
+        var method = clz.getMethod("getSingleton");
+        method.setAccessible(true);
+        return (ComputerDao) method.invoke(null);
+    }
+
+    public StaffDao createStaffDao() throws Exception {
+        Class clz = Class.forName(String.format("%s%s%s", "singleton.dao.", name, "StaffDao"));
+        Method method = clz.getMethod("getSingleton");
+        method.setAccessible(true);
+        return (StaffDao) method.invoke(null);
     }
 }
 
@@ -20,13 +46,13 @@ class MysqlFactory extends DaoFactoryImpl {
     }
 
     @Override
-    public singleton.dao.ComputerDao createComputerDao() {
-        return MysqlComputerDao.getSingleton();
+    public ComputerDao createComputerDao() {
+        return (ComputerDao) MysqlComputerDao.getSingleton();
     }
 
     @Override
     public StaffDao createStaffDao() {
-        return MysqlStaffDao.getSingleton();
+        return (StaffDao) MysqlStaffDao.getSingleton();
     }
 }
 
@@ -37,12 +63,12 @@ class SqlServerFactory extends DaoFactoryImpl {
 
     @Override
     public ComputerDao createComputerDao() {
-        return SqlServerComputerDao.getSingleton();
+        return (ComputerDao) SqlServerComputerDao.getSingleton();
     }
 
     @Override
     public StaffDao createStaffDao() {
-        return SqlServerStaffDao.getSingleton();
+        return (StaffDao) SqlServerStaffDao.getSingleton();
     }
 }
 
