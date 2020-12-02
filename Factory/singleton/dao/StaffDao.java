@@ -1,0 +1,11 @@
+package singleton.dao;
+
+import singleton.bean.Staff;
+
+public interface StaffDao {
+    int insertStaff(Staff staff);
+
+    int deleteStaff(int id);
+
+    int updateStaff(int id);
+}
