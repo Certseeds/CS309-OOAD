@@ -1,13 +1,16 @@
 package singleton;
 
+import abstractFactory.dao.DaoFactory;
 import singleton.bean.Computer;
 import singleton.bean.Staff;
 import singleton.dao.ComputerDao;
 import singleton.dao.DaoFactoryImpl;
+import singleton.dao.SqlServerStaffDao;
 import singleton.dao.StaffDao;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
+import java.lang.reflect.Method;
 import java.util.InputMismatchException;
 import java.util.Properties;
 import java.util.Scanner;
@@ -21,10 +24,9 @@ public class client {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Class clz = Class.forName(String.format("%s%s","singleton.dao.",prop.getProperty("classname")));
-        var method = clz.getDeclaredConstructor();
+        var method = DaoFactoryImpl.class.getMethod("getSingleton",String.class);
         method.setAccessible(true);
-        var dfi = (DaoFactoryImpl)method.newInstance();
+        var dfi = (DaoFactoryImpl)method.invoke(null,prop.getProperty("classname"));
         var staffDao = dfi.createStaffDao();
         var computerDao = dfi.createComputerDao();
 
