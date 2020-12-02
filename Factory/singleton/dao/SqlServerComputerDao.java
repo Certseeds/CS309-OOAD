@@ -1,15 +1,14 @@
 package singleton.dao;
 
 import singleton.bean.Computer;
-import singleton.dao.ComputerDao;
 
-public class SqlServerComputerDao implements ComputerDao {
+public class SqlServerComputerDao extends Singleton implements ComputerDao {
     private volatile static SqlServerComputerDao singleton;
 
     private SqlServerComputerDao() {
     }
 
-    public static SqlServerComputerDao getSingleton(){
+    public static Singleton getSingleton() {
         if (singleton == null) {
             synchronized (SqlServerComputerDao.class) {
                 if (singleton == null) {

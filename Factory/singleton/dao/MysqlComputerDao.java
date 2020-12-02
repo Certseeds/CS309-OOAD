@@ -2,14 +2,14 @@ package singleton.dao;
 
 import singleton.bean.Computer;
 
-public class MysqlComputerDao implements ComputerDao {
+public class MysqlComputerDao extends Singleton implements ComputerDao {
     // way 4: double checked locking
     private volatile static MysqlComputerDao singleton;
 
     private MysqlComputerDao() {
     }
 
-    public static MysqlComputerDao getSingleton(){
+    public static Singleton getSingleton() {
         if (singleton == null) {
             synchronized (MysqlComputerDao.class) {
                 if (singleton == null) {
