@@ -1,14 +1,14 @@
-package original.dao;
+package abstractFactory.dao;
 
-import original.bean.Staff;
+import abstractFactory.bean.Staff;
 
 public class SqlServerStaffDao implements StaffDao {
     @Override
     public int insertStaff(Staff staff) {
-        if(staff==null){
+        if (staff == null) {
             System.out.println("staff is null");
             return 0;
-        }else{
+        } else {
             System.out.println("insert staff into SqlServer database successfully");
             return 1;
         }

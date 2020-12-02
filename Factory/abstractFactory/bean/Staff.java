@@ -1,4 +1,4 @@
-package original.bean;
+package abstractFactory.bean;
 
 public class Staff {
     private int id;
@@ -6,7 +6,7 @@ public class Staff {
     private String password;
     private String department;
 
-    public Staff(){
+    public Staff() {
 
     }
 

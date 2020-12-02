@@ -1,6 +1,6 @@
-package original.dao;
+package part2.dao;
 
-import original.bean.Computer;
+import part2.bean.Computer;
 
 public interface ComputerDao {
     public int insertComputer(Computer computer);
