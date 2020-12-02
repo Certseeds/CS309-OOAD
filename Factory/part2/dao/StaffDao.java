@@ -1,6 +1,6 @@
-package original.dao;
+package part2.dao;
 
-import original.bean.Staff;
+import part2.bean.Staff;
 
 public interface StaffDao {
     public int insertStaff(Staff staff);

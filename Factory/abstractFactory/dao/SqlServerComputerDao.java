@@ -1,15 +1,15 @@
-package original.dao;
+package abstractFactory.dao;
 
-import original.bean.Computer;
+import abstractFactory.bean.Computer;
 
 public class SqlServerComputerDao implements ComputerDao {
 
     @Override
     public int insertComputer(Computer computer) {
-         if(computer==null ){
+        if (computer == null) {
             System.out.println("computer is null");
             return 0;
-        }else{
+        } else {
             System.out.println("insert computer into SqlServer database successfully");
             return 1;
         }

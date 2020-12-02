@@ -1,11 +1,11 @@
-package original;
+package part2;
 
-import original.bean.Computer;
-import original.bean.Staff;
-import original.dao.ComputerDao;
-import original.dao.ComputerFactory;
-import original.dao.StaffDao;
-import original.dao.StaffFactory;
+import part2.bean.Computer;
+import part2.bean.Staff;
+import part2.dao.ComputerDao;
+import part2.dao.ComputerFactory;
+import part2.dao.StaffDao;
+import part2.dao.StaffFactory;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
