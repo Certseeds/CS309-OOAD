@@ -1,4 +1,4 @@
-package original.dao;
+package part2.dao;
 
 public class ComputerFactory {
     public ComputerDao createComputerDao(int type){
