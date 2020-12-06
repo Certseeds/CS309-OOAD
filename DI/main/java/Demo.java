@@ -1,9 +1,11 @@
-package main.java;
+import annotations.Inject;
+import annotations.Value;
 
-import main.java.annotations.Inject;
-import main.java.annotations.Value;
-
-import java.lang.reflect.*;
+import java.lang.reflect.Array;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Parameter;
 import java.util.Arrays;
 
 /**
@@ -161,7 +163,7 @@ public class Demo {
                 Array.set(target3, i, Integer.parseInt(stringArray[i]));
             }
             System.out.println("\n ---- Test Array ----");
-            System.out.println(Arrays.toString((Integer[])target3));
+            System.out.println(Arrays.toString((Integer[]) target3));
 
             //Now you can feel relax finishing this assignment!
 

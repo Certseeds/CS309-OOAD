@@ -1,7 +1,7 @@
-package test.java.testclass;
+package testclass;
 
-import main.java.annotations.Inject;
-import main.java.annotations.Value;
+import annotations.Inject;
+import annotations.Value;
 
 public class JImpl implements J {
     private E eDep;

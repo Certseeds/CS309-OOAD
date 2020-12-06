@@ -1,4 +1,4 @@
-package test.java.testclass;
+package testclass;
 
 public class EImpl implements E {
 }

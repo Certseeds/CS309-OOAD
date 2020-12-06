@@ -1,24 +1,38 @@
-package test.java;
-
-import main.java.BeanFactory;
-import main.java.BeanFactoryImpl;
-import test.java.testclass.*;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import testclass.A;
+import testclass.B;
+import testclass.D;
+import testclass.E;
+import testclass.EImpl;
+import testclass.F;
+import testclass.FEnhanced;
+import testclass.G;
+import testclass.H;
+import testclass.J;
+import testclass.JImpl;
+import testclass.K;
+import testclass.L;
+import testclass.M;
 
 import java.io.File;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class BeanFactoryLocalJudge {
 
-    private BeanFactory beanFactory;
+    private static BeanFactory beanFactory;
 
-    @BeforeEach
-    public void setup() {
-        this.beanFactory = new BeanFactoryImpl();
-        beanFactory.loadInjectProperties(new File("inject.properties"));
-        beanFactory.loadValueProperties(new File("value.properties"));
+    @BeforeAll
+    static void setup() {
+        beanFactory = new BeanFactoryImpl();
+        beanFactory.loadInjectProperties(new File("DI/inject.properties"));
+        beanFactory.loadValueProperties(new File("DI/value.properties"));
     }
 
     @Test
@@ -110,5 +124,13 @@ public class BeanFactoryLocalJudge {
         J instance = beanFactory.createInstance(J.class);
         assertNotNull(instance);
         assertTrue(instance instanceof JImpl);
+    }
+
+    @Test
+    public void testM() {
+        M instance = beanFactory.createInstance(M.class);
+        assertNotNull(instance);
+        assertTrue(instance.isbool());
+        assertFalse(instance.isBool());
     }
 }

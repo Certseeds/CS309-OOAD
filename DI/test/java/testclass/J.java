@@ -1,4 +1,4 @@
-package test.java.testclass;
+package testclass;
 
 public interface J {
     E getEDep();

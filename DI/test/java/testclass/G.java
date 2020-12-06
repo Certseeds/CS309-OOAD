@@ -1,9 +1,13 @@
-package test.java.testclass;
+package testclass;
 
-
-import main.java.annotations.Inject;
+import annotations.Inject;
 
 public class G {
+
+    @Inject
+    private C cDep;
+    @Inject
+    private D dDep;
 
     public C getCDep() {
         return cDep;
@@ -12,12 +16,6 @@ public class G {
     public D getDDep() {
         return dDep;
     }
-
-    @Inject
-    private C cDep;
-
-    @Inject
-    private D dDep;
 
 }
 
