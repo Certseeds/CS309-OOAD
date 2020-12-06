@@ -3,10 +3,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>sustech</groupId>
-    <artifactId>backend</artifactId>
+    <artifactId>CS309-OOAD</artifactId>
     <version>1.0.0</version>
     <name>backend</name>
-    <description>project for CS309 backend assignment</description>
+    <description>project for CS309-OOAD assignments</description>
 
     <properties>
         <java.version>11</java.version>
@@ -27,6 +27,14 @@
     </dependencies>
 
     <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+        </plugins>
     </build>
 
 </project>

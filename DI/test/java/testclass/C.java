@@ -1,4 +1,5 @@
-package test.java.testclass;
+package testclass;
+
 
 public class C {
 }

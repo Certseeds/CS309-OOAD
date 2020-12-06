@@ -1,7 +1,6 @@
-package test.java.testclass;
+package testclass;
 
-
-import main.java.annotations.Value;
+import annotations.Value;
 
 public class D {
     @Value("d.val")

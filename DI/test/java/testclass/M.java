@@ -3,17 +3,21 @@ package testclass;
 import annotations.Inject;
 import annotations.Value;
 
-public class L {
+public class M {
+
     private B bDep;
 
+    @Value("m.boolvalue")
     private boolean bool;
+    @Value("m.Boolvalue")
+    private Boolean Bool;
 
-    public L() {
+    public M() {
 
     }
 
     @Inject
-    public L(B bDep, @Value("l.val") boolean bool) {
+    public M(B bDep, @Value("l.val") boolean bool) {
         this.bDep = bDep;
         this.bool = bool;
     }
@@ -22,7 +26,11 @@ public class L {
         return bDep;
     }
 
-    public boolean isBool() {
+    public boolean isbool() {
         return bool;
+    }
+
+    public boolean isBool() {
+        return Bool;
     }
 }

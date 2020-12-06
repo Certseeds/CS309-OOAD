@@ -1,5 +1,3 @@
-package main.java;
-
 import java.io.File;
 
 public interface BeanFactory {
