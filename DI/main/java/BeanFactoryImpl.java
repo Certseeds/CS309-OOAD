@@ -17,7 +17,6 @@ import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
 import static java.lang.Long.parseLong;
 import static java.lang.Short.parseShort;
-import static java.util.Arrays.asList;
 import static java.util.Arrays.stream;
 
 public class BeanFactoryImpl implements BeanFactory {
@@ -76,32 +75,41 @@ public class BeanFactoryImpl implements BeanFactory {
         var instanceClass = (Class<? extends T>) map.getOrDefault(clazz, clazz);
         // deal with Inject on Constructorsar
         var constructorList = stream(instanceClass.getDeclaredConstructors())
-                .filter(c -> c.getAnnotation(Inject.class) != null)
+                .filter(c -> c.isAnnotationPresent(Inject.class))
                 .collect(Collectors.toList());
         if (constructorList.isEmpty()) {
             will_return = instanceClass.getDeclaredConstructor().newInstance();
         } else {
             var constructor = constructorList.get(0);
+            System.out.println(constructor);
             var paramArray = new ArrayList<>();
             for (var parameter : constructor.getParameters()) {
+                System.out.println("pamam " + parameter);
                 if (parameter.isAnnotationPresent(Value.class)) {
+                    System.out.println("Value.class");
                     if (parameter.getType().isArray()) {
+                        System.out.println("Is Array");
                         paramArray.add(createInstanceArray(parameter.getType(), parameter.getAnnotation(Value.class)));
                     } else {
                         paramArray.add(createInstanceObject(parameter.getType(), parameter.getAnnotation(Value.class)));
                     }
                 } else {
+                    System.out.println("No Value.class");
                     paramArray.add(createInstance(parameter.getType()));
                 }
             }
             will_return = (T) constructor.newInstance(paramArray.toArray());
         }
         for (var field : instanceClass.getDeclaredFields()) {
+            System.out.println("field " + field);
             field.setAccessible(true);
             if (field.isAnnotationPresent(Inject.class)) {
+                System.out.println("Field Inject.class");
                 field.set(will_return, createInstance(field.getType()));
             } else if (field.isAnnotationPresent(Value.class)) {
+                System.out.println("Field Value.class");
                 if (field.getType().isArray()) {
+                    System.out.println("is Arrray");
                     field.set(will_return, createInstanceArray(field.getType(), field.getAnnotation(Value.class)));
                 } else {
                     field.set(will_return, createInstanceObject(field.getType(), field.getAnnotation(Value.class)));
@@ -209,9 +217,8 @@ public class BeanFactoryImpl implements BeanFactory {
                 return (T) will_return;
             }
             return (T) wrapper;
-
         } else if (elementType == String.class) {
-            return (T) new ArrayList<>(asList(valueStrArray)).toArray();
+            return (T) valueStrArray;
         }
         return (T) new Object[0];
     }
@@ -221,8 +228,8 @@ public class BeanFactoryImpl implements BeanFactory {
         T will_return = null;
         var valueStr = valueMap.get(value.value());
         if (clazz == Character.class || clazz == char.class) {
-            Character c = valueStr.charAt(0);
-            will_return = (T) c;
+            var c = valueStr.charAt(0);
+            will_return = (T) (Character) c;
         } else if (clazz == Double.class || clazz == double.class) {
             will_return = (T) (Double) parseDouble(valueStr);
         } else if (clazz == Float.class || clazz == float.class) {
