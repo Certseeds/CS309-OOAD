@@ -30,6 +30,6 @@ class Rental {
     }
 
     public int getFrequentRenterPoints() {
-        return 1 + this._movie.getFrequentRenterPoints(this.get_daysRented());
+        return this._movie.getFrequentRenterPoints(this.get_daysRented());
     }
 }
